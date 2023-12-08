@@ -2,7 +2,11 @@ import pygame
 
 pygame.init()
 
-screen = pygame.display.set_mode((600,400))
+WINDOW_HEIGHT = 600
+WINDOW_WIDTH = 400
+FPS = 60
+
+screen = pygame.display.set_mode((WINDOW_HEIGHT, WINDOW_WIDTH))
 clock = pygame.time.Clock()
 
 running = True
@@ -10,8 +14,10 @@ running = True
 pos_x = 190
 
 while running:
-    clock.tick(30)
+    clock.tick(FPS)
     pos_x += 1
+
+    screen.fill("black")
 
     #Event handler
     for event in pygame.event.get():
