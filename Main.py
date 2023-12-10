@@ -1,32 +1,37 @@
 import pygame
+from draw import draw
+from player import Player
 
+#initiation of pygame
 pygame.init()
+pygame.display.set_caption("Project_S")
 
-WINDOW_HEIGHT = 600
-WINDOW_WIDTH = 400
+#display variables
+WINDOW_HEIGHT = 800
+WINDOW_WIDTH = 600
 FPS = 60
 
 screen = pygame.display.set_mode((WINDOW_HEIGHT, WINDOW_WIDTH))
-clock = pygame.time.Clock()
 
-running = True
+def main(screen):
+    clock = pygame.time.Clock()
+    running = True
+    player = Player(100, 100, 50, 50)
 
-pos_x = 190
+    while running:
+        clock.tick(FPS)
 
-while running:
-    clock.tick(FPS)
-    pos_x += 1
+        #Event handler
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                running = False
+                break
 
-    screen.fill("black")
+        draw(screen, player)
 
-    #Event handler
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            running = False
+    pygame.quit()
+    quit()        
 
-    #Drawing
-    pygame.draw.rect(screen, (0, 0, 255), pygame.Rect(pos_x, 190, 50, 50))
-    
-    pygame.display.update()
 
-pygame.QUIT()
+if __name__ == "__main__":
+    main(screen)
