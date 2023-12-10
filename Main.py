@@ -2,6 +2,8 @@ import pygame
 from draw import draw
 from player import Player
 
+#TEST
+
 #initiation of pygame
 pygame.init()
 pygame.display.set_caption("Project_S")
