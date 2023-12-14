@@ -2,7 +2,7 @@ import pygame
 
 class Player(pygame.sprite.Sprite):
     #variables describe player stats
-    PLAYER_VELOCITY = 2
+    PLAYER_VELOCITY = 3.1
     COLOR = (255, 0, 0)
 
     def __init__(self, x, y, width, height):
@@ -28,7 +28,7 @@ class Player(pygame.sprite.Sprite):
 
     def move_up(self, velocity):
         if(self.x_velocity == velocity or self.x_velocity == -velocity):
-            self.y_velocity = -velocity * 0.7077
+            self.y_velocity = -velocity * 0.7077 
         else:
             self.y_velocity = -velocity
 

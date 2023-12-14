@@ -2,8 +2,6 @@ import pygame
 from draw import draw
 from player import Player
 
-#TEST
-
 #initiation of pygame
 pygame.init()
 pygame.display.set_caption("Project_S")
@@ -15,6 +13,7 @@ FPS = 60
 
 screen = pygame.display.set_mode((WINDOW_HEIGHT, WINDOW_WIDTH))
 
+#function responsible for control handling
 def control_handler(player):
     keys = pygame.key.get_pressed()
 
@@ -23,18 +22,30 @@ def control_handler(player):
     player.y_velocity = 0
 
     if keys[pygame.K_a]:
-        player.move_left(player.PLAYER_VELOCITY)
+        if(player.rect.x <= 0):
+            player.move_left(0)
+        else:
+            player.move_left(player.PLAYER_VELOCITY)
     if keys[pygame.K_d]:
-        player.move_right(player.PLAYER_VELOCITY)
+        if(player.rect.x >= (WINDOW_HEIGHT - player.rect.width)):
+            player.move_right(0)
+        else:
+            player.move_right(player.PLAYER_VELOCITY)
     if keys[pygame.K_w]:
-        player.move_up(player.PLAYER_VELOCITY)
+        if(player.rect.y < 240): #should be changed in near future as parametr - background height - player.rect.height + 5 (this five is a margin)
+            player.move_up(0)
+        else:
+            player.move_up(player.PLAYER_VELOCITY)
     if keys[pygame.K_s]:
-        player.move_down(player.PLAYER_VELOCITY)
+        if(player.rect.y > (WINDOW_WIDTH - player.rect.height - 50)): #also should be changed when background will be added
+            player.move_down(0)
+        else:
+            player.move_down(player.PLAYER_VELOCITY)
 
 def main(screen):
     clock = pygame.time.Clock()
     running = True
-    player = Player(100, 400, 50, 50)
+    player = Player(100, 400, 50, 100)
 
     while running:
         clock.tick(FPS)
